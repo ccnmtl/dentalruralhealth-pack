@@ -1,0 +1,47 @@
+[
+{
+    "z_index": 990,
+    "name": "Rural Populations Base Map Layer",
+    "image": "./base.png",
+    "transparency": 99,
+    "display_name": "Rural Populations Base Map Layer",
+    "legend": "<div class=\"map_legend clearfix\"><div class=\"key-item clearfix\"><img src=\"./general_legend.png\" /></div></div>",
+    "id": 6
+},
+{
+    "z_index": 991,
+    "name": "Rural Populations Population and Poverty Level",
+    "image": "./poverty.png",
+    "transparency": 50,
+    "display_name": "Population & Poverty Level",
+    "legend": "<div class=\"key-item clearfix\"><img src=\"./poverty_legend.png\" /></div>",
+    "id": 7
+},
+{
+    "z_index": 992,
+    "name": "Rural Populations Health and Education Centers Layer",
+    "image": "./health.png",
+    "transparency": 99,
+    "display_name": "Health & Education Centers",
+    "legend": "<div class=\"key-item clearfix\"><img src=\"./health_legend.png\" /></div>",
+    "id": 8
+},
+{
+    "z_index": 993,
+    "name": "Rural Populations Major Businesses Layer",
+    "image": "./businesses.png",
+    "transparency": 99,
+    "display_name": "Major Businesses",
+    "legend": "<div class=\"key-item clearfix\"><img src=\"./businesses_legend.png\" /></div>",
+    "id": 9
+},
+{
+    "z_index": 994,
+    "name": "Rural Populations Dental Locations Layer",
+    "image": "./dental.png",
+    "transparency": 99,
+    "display_name": "Dental Locations",
+    "legend": "<div class=\"key-item clearfix\"><img src=\"./dental_legend.png\" /></div>",
+    "id": 10
+}
+]
