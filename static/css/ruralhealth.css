@@ -1,0 +1,35 @@
+.btn-print {
+    margin-left: 20px !important;
+}
+
+.spacer {
+    margin-top: 10px;
+}
+
+a.btn.btn-default {
+    margin-left: 10px;
+}
+
+.row.map-container {
+    background-color: #f2f2f2;
+}
+
+.map-layers {
+    position: relative;
+    width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.base-map-layer {
+    height: 450px;
+}
+
+.map-layer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    height: 450px;
+}

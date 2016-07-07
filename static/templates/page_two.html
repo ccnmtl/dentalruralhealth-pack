@@ -1,0 +1,129 @@
+<div class="page-2 spacer">
+    <div class="modal fade" id="profile-modal" tabindex="-1" role="dialog" aria-labelledby="Help">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">View Strategies</h4>
+         </div>
+          <div class="modal-body profile"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h4>2. View Strategies</h4>
+        </div>
+        <div class="col-md-offset-3 col-md-3">
+            <a class="btn btn-default btn-help pull-right" href="#" data-target="#help-modal" data-toggle="modal" role="button">
+                <span class="glyphicon glyphicon-question-sign"></span> Help</a>
+            </a>
+
+            <div class="modal fade" id="help-modal" tabindex="-1" role="dialog" aria-labelledby="Help">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Help</h4>
+                  </div>
+                  <div class="modal-body">
+                    <h4>1. Review each of the six proposals.</h4>
+                    <p>Review each of the six proposals NOSDA is considering. Each proposal is based on one strategy that has been shown to be successful elsewhere in in the country at a similar cost and scale. Select a number above and read the proposal summary. We suggest you download the PDF of each full proposal to use later while defending your selection.</p>
+
+                    <h4>2. Select Strategy</h4>
+                    <p>After you have viewed all six proposals, go to the next page to select the proposal that you believe will be most successful for improving oral health and access to dental care for poor/low-income rural adults (18-65 y/o) in Springdale County. Be prepared to defend your selected proposal before NOSDA leadership and answer questions related to how and why you made your selection.</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <a href="#" class="btn btn-default pull-right" data-toggle="modal" data-target="#map-layers-modal">
+                <span class="glyphicon glyphicon-picture"></span> Map Layers
+            </a>
+
+            <div class="modal fade" id="map-layers-modal" tabindex="-1" role="dialog" aria-labelledby="Help">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Select Map Layers</h4>
+                  </div>
+                  <div class="modal-body">
+                        <% for (var i=1; i < layers.length; i++) { %>
+                            <% var layer = layers[i]; %>
+                            <div>
+                                <input type="checkbox" class="select-layer"
+                                    data-id="<%=layer.id%>" value="<%=layer.name%>"
+                                    <% if (layer.visible) { %>checked="checked" <% } %>></input>
+                                <%= layer.display_name %>
+                            </div>
+                        <% } %>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div> 
+        </div>
+    </div>
+
+    <div class="row spacer">
+        <div class="col-md-12">
+            <% if (complete) { %>
+                <div class="alert alert-success">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    <b>Great work!</b> In the next step, you'll select a preferred strategy
+                </div>
+            <% } else { %>
+                <div class="alert alert-info">
+                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                    Click on each strategy to review the details.
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+    <div class="row map-container spacer">
+        <div class="col-md-12 text-center">
+            <div class="map-layers">
+                <img class="base-map-layer" src="<%=layers[0].image%>" alt="rural health base map" />
+                <% for (var i=1; i < layers.length; i++) { %>
+                    <% var layer = layers[i]; %>
+                    <img data-id="<%=layer.id%>"
+                         class="map_layer_<%=layer.id%> map-layer"
+                         src="<%=layer.image%>"
+                         alt="<%= layer.name %>"
+                         style="display: none; z-index: <%=layer.z_index%>; opacity:0.<%=layer.transparency%>; -moz-opacity:0.<%=layer.transparency%>; filter:alpha(opacity=<%=layer.transparency%>);"></img>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <div class="row spacer">
+        <div class="col-md-12 text-center">
+            <div class="map-legend-container">
+                <div>
+                    <h4>Map Legends</h4>
+                    <div id="base_map_layer"><%= layers[0].legend %></div>
+                </div>
+                <% for (var i=1; i < layers.length; i++) { %>
+                    <% var layer = layers[i]; %>
+                    <div data-id="<%=layer.id%>"
+                         class="pull-left map_legend_<%=layer.id%> map_legend"
+                         style="display: none">
+                        <h5><%=layer.display_name%></h5>
+                        <%=layer.legend %>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
