@@ -16,13 +16,10 @@ a.btn.btn-default {
 
 .map-layers {
     position: relative;
-    width: 750px;
+    width: 860px;
+    height: 490px;
     margin-left: auto;
     margin-right: auto;
-}
-
-.base-map-layer {
-    height: 450px;
 }
 
 .map-layer {
@@ -31,5 +28,94 @@ a.btn.btn-default {
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    height: 450px;
+    height: 490px;
+}
+
+/** Map Legends **/
+
+.map-legend-container {
+    margin: 5px 5px 5px 0;
+    padding: 5px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    font-size: 12px;
+    width: 945px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.map_legend {
+    margin: 5px;
+    padding: 5px;
+    font-size: 12px;
+}
+
+.map_legend h5 {
+    font-size: 14px !important;
+    padding: 10px 0 !important;
+    margin-bottom: -3px !important;
+    background-color: #D9EDF7;
+}
+
+/** Numbered Strategies **/
+.strategy-state-label {
+    font-size: 18px;
+    margin-top: 12px;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.strategy-state {
+    width: 30px;
+    height: 40px; 
+    padding: 7px 0 0 0;
+    text-align: center;
+    border: 0;
+    margin: 8px 8px 8px 0;
+    cursor: pointer;
+    background: url('../img/icon_strategy_state.jpg') 0 0 no-repeat;
+    font-family: 'arial black', arial, sans-serif;
+    font-weight: 900;
+    color: #999;
+    font-size: 16px !important;
+}
+
+.strategy-state.viewed {
+    color: #339900;
+    background: url('../img/icon_strategy_state_viewed.jpg') 0 0 no-repeat;
+}
+
+.strategy-state.selected {
+    color: #cc0000;
+    background: url('../img/icon_strategy_state_selected.jpg') 0 0 no-repeat;
+}
+
+#strategy-modal .modal-dialog {
+    width: 815px;
+}
+
+#map-view-modal .modal-dialog {
+    width: 890px;
+}
+
+.strategy-title {
+    font-size: 18px;
+    margin-top: 10px;
+} 
+
+.custom-container {
+    margin-top: 10px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+
+.quiz-question {
+    margin-bottom: 10px;
+}
+
+.quiz-question input[type="text"] {
+    width: 210px;
 }

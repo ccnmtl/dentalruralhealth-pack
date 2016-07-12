@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-md-1">
+        <div class="strategy-state viewed <% if (viewed) { %>viewed<% } %> <% if (selected) { %>selected<% } %>">
+            <%= ordinal %>
+        </div>
+    </div>
+    <div class="col-md-11">
+        <div class="strategy-title"><%= title %></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <% if (showProsAndCons) { %>
+            <div>
+                <div>
+                    <h5>PROS</h5>
+                    <%= pros %>
+                </div>
+                <div>
+                    <h5>CONS</h5>
+                    <%= cons %>
+                </div>
+            </div>
+        <% } %> 
+        <div class="strategy-container">
+            <h5>SUMMARY</h5>
+            <%= summary %>
+        </div>
+        <div class="strategy-download pull-right">
+            <a href="./<%=pdf%>">Download full proposal</a>
+        </div>
+    </div>
+</div>

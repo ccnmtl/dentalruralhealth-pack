@@ -1,19 +1,18 @@
 <div class="page-2 spacer">
-    <div class="modal fade" id="profile-modal" tabindex="-1" role="dialog" aria-labelledby="Help">
+    <div class="modal fade" id="strategy-modal" tabindex="-1" role="dialog" aria-labelledby="Strategy">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">View Strategies</h4>
          </div>
-          <div class="modal-body profile"></div>
+          <div class="modal-body"></div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
     </div>
-
     <div class="row">
         <div class="col-md-6">
             <h4>2. View Strategies</h4>
@@ -76,7 +75,7 @@
     </div>
 
     <div class="row spacer">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <% if (complete) { %>
                 <div class="alert alert-success">
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
@@ -89,12 +88,23 @@
                 </div>
             <% } %>
         </div>
+        <div class="col-md-6 text-right">
+            <div>
+                <% for (var i = strategies.length - 1; i >= 0; i--) { %>
+                    <% var strategy = strategies[i] %>
+                    <div data-id="<%=strategy.id%>" class="strategy-state pull-right <% if (strategy.selected) { %>selected<% } %> <% if (strategy.viewed) { %> viewed <% } %>">
+                        <%= strategy.ordinal %>
+                    </div>
+                <% } %>
+                <div class="strategy-state-label pull-right">Strategies: </div>
+            </div>
+        </div>
     </div>
 
     <div class="row map-container spacer">
         <div class="col-md-12 text-center">
             <div class="map-layers">
-                <img class="base-map-layer" src="<%=layers[0].image%>" alt="rural health base map" />
+                <img class="map-layer" src="<%=layers[0].image%>" alt="rural health base map" />
                 <% for (var i=1; i < layers.length; i++) { %>
                     <% var layer = layers[i]; %>
                     <img data-id="<%=layer.id%>"
