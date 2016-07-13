@@ -55,6 +55,15 @@ var StrategyList = Backbone.Collection.extend({
             }
         }
     },
+    selected: function() {
+        var selected = null;
+        this.forEach(function(item) {
+            if (item.get('selected')) {
+                selected = item;
+            }
+        });
+        return selected;
+    },
     toTemplate: function() {
         var a = [];
         this.forEach(function(item) {

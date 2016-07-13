@@ -1,0 +1,151 @@
+<div class="page-3 spacer">
+    <div class="modal fade" id="strategy-modal" tabindex="-1" role="dialog" aria-labelledby="Strategy">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">View Strategies</h4>
+         </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h4>3. Select Strategies</h4>
+        </div>
+        <div class="col-md-offset-3 col-md-3">
+            <a class="btn btn-default btn-help pull-right" href="#" data-target="#help-modal-3" data-toggle="modal" role="button">
+                <span class="glyphicon glyphicon-question-sign"></span> Help</a>
+            </a>
+
+            <div class="modal fade" id="help-modal-3" tabindex="-1" role="dialog" aria-labelledby="Help">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Help</h4>
+                  </div>
+                  <div class="modal-body">
+                    <h4>Select a Strategy</h4>
+                    <p>Select the proposal that you believe will be most successful for improving oral health and access to dental care for poor/low-income rural adults (18-65y/o) in Springdale County.</p>
+
+                    <p>When you have selected a proposal, click "Step 3" to answer questions related to how and why you made your selection. You will have the opportunity later to view pros and cons for each strategy and reflect on your selection.</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <a href="#" class="btn btn-default pull-right" data-toggle="modal" data-target="#map-view-modal">
+                <span class="glyphicon glyphicon-picture"></span> Map View
+            </a>
+
+            <div class="modal fade" id="map-view-modal" tabindex="-1" role="dialog" aria-labelledby="Help">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Map View</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="map-layers">
+                                <img class="map-layer" src="<%=layers[0].image%>" alt="rural health base map" />
+                                <% for (var i=1; i < layers.length; i++) { %>
+                                    <% var layer = layers[i]; %>
+                                    <img data-id="<%=layer.id%>"
+                                         class="map_layer_<%=layer.id%> map-layer"
+                                         src="<%=layer.image%>"
+                                         alt="<%= layer.name %>"
+                                         style="display: none; z-index: <%=layer.z_index%>; opacity:0.<%=layer.transparency%>; -moz-opacity:0.<%=layer.transparency%>; filter:alpha(opacity=<%=layer.transparency%>);"></img>
+                                <% } %>
+                            </div>
+                            <div class="row spacer">
+                                <div class="col-md-12 text-center">
+                                    <div class="map-legend-container">
+                                        <div>
+                                            <h4>Map Legends</h4>
+                                            <div id="base_map_layer"><%= layers[0].legend %></div>
+                                        </div>
+                                        <% for (var i=1; i < layers.length; i++) { %>
+                                            <% var layer = layers[i]; %>
+                                            <div data-id="<%=layer.id%>"
+                                                 class="pull-left map_legend_<%=layer.id%> map_legend"
+                                                 style="display: none">
+                                                <h5><%=layer.display_name%></h5>
+                                                <%=layer.legend %>
+                                            </div>
+                                        <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+
+    <div class="row spacer">
+        <div class="col-md-6">
+            <% if (selectedStrategy) { %>
+                <div class="alert alert-success">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    You've selected Strategy #<%= selectedStrategy.ordinal %>. Click Step 3 to continue.
+                    <p style="font-size: 14px; margin-top: 10px !important;">
+                    After you answer a few additional questions, you will have an opportunity to reflect on your choice and 
+                    select a different strategy.<br /></p>
+                </div>
+            <% } else { %>
+                <div class="alert alert-info">
+                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                    Select the proposal that you believe will be most successful for improving oral health and access to dental care for poor/low-income rural adults (18-65y/o) in Springdale County.
+                </div>
+            <% } %>
+        </div>
+        <div class="col-md-6 text-right">
+            <div>
+                <% for (var i = strategies.length - 1; i >= 0; i--) { %>
+                    <% var strategy = strategies[i] %>
+                    <div data-id="<%=strategy.id%>" class="strategy-state pull-right <% if (strategy.selected) { %>selected<% } %> <% if (strategy.viewed) { %> viewed <% } %>">
+                        <%= strategy.ordinal %>
+                    </div>
+                <% } %>
+                <div class="strategy-state-label pull-right">Strategies: </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row spacer">
+        <div class="col-md-12">
+            <div class="custom-container">
+                <% for (var i=0; i < strategies.length; i++) { %>
+                    <% var strategy = strategies[i]; %>
+                    <div class="quiz-question">
+                        <input type="radio" name="strategy" value="<%= strategies[i].id %>"
+                           <% if (selectedStrategy) { %>disabled="disabled"<% } %>
+                           <% if (strategy.selected) { %> checked="checked" class="yours" <% } %>
+                        />
+                        <%= strategy.ordinal %>. <%= strategy.title %> 
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <div class="row spacer">
+        <div class="col-md-12 text-center">
+            <% if (!selectedStrategy) { %>
+                <button id="select-strategy" class="btn btn-primary">Submit</button>
+            <% } %>
+        </div>
+    </div>
+</div>
