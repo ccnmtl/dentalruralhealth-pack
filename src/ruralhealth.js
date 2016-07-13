@@ -146,9 +146,6 @@ var StrategyView = BaseView.extend({
         this.renderMap();
 
         this.maybeComplete();
-
-        this.complete = true;
-        this.trigger('complete', this);
     },
     maybeComplete: function() {
         if (!this.complete) {
