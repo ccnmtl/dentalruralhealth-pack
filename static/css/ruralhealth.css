@@ -45,7 +45,6 @@ a.btn.btn-default {
 }
 
 .map_legend {
-    margin: 5px;
     padding: 5px;
     font-size: 12px;
 }
@@ -94,8 +93,8 @@ a.btn.btn-default {
     width: 815px;
 }
 
-#map-view-modal .modal-dialog {
-    width: 890px;
+.map-view-modal .modal-dialog {
+    width: 945px;
 }
 
 .strategy-title {
