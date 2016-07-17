@@ -9,8 +9,10 @@ window.jQuery = window.$ = jQuery;
 require('bootstrap');
 
 var BaseView = Backbone.View.extend({
+    initializeResponses: function(responses) {
+        this.responses = responses;
+    },
     initializeMap: function(layers) {
-        this.responses = {};
         this.layers = layers;
         var self = this;
         for (var i = 0; i < this.layers.length; i++) {
@@ -176,6 +178,7 @@ var SelectStrategyView = BaseView.extend({
         this.selectedStrategy = null;
         this.strategies = options.strategies;
 
+        this.initializeResponses(options.responses);
         this.initializeMap(options.layers);
         this.template = require('../static/templates/page_three.html');
         this.strategyTemplate = require('../static/templates/strategy.html');
@@ -240,6 +243,7 @@ var DefendStrategyView = BaseView.extend({
         this.complete = false;
         this.strategies = options.strategies;
 
+        this.initializeResponses(options.responses);
         this.initializeMap(options.layers);
         this.template = require('../static/templates/page_four.html');
         this.strategyTemplate = require('../static/templates/strategy.html');
@@ -318,6 +322,7 @@ var RethinkView = BaseView.extend({
         this.complete = false;
         this.strategies = options.strategies;
 
+        this.initializeResponses(options.responses);
         this.initializeMap(options.layers);
         this.template = require('../static/templates/page_six.html');
         this.strategyTemplate = require('../static/templates/strategy.html');
@@ -362,6 +367,7 @@ var RuralHealthOfficeApp = {
         var strategies = new models.StrategyList(data);
 
         var views = [];
+        var responses = {};
 
         // Step 1
         var page = jQuery('<div></div>');
@@ -387,7 +393,8 @@ var RuralHealthOfficeApp = {
         view = new SelectStrategyView({
             el: page,
             layers: layers,
-            strategies: strategies
+            strategies: strategies,
+            responses: responses
         });
         views.push(view);
 
@@ -397,7 +404,8 @@ var RuralHealthOfficeApp = {
         view = new DefendStrategyView({
             el: page,
             layers: layers,
-            strategies: strategies
+            strategies: strategies,
+            responses: responses
         });
         views.push(view);
 
@@ -417,7 +425,8 @@ var RuralHealthOfficeApp = {
         view = new RethinkView({
             el: page,
             layers: layers,
-            strategies: strategies
+            strategies: strategies,
+            responses: responses
         });
         views.push(view);
 

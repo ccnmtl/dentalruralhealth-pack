@@ -121,9 +121,62 @@
         </div>
     </div>
 
+    <div class="row spacer printonly">
+        <div class="col-md-12">
+            <h3>Your Strategy</h3>
+            <div class="strategy-title">#<%= selectedStrategy.ordinal %>. <%= selectedStrategy.title %></div>
+        </div>
+    </div>
+    <div class="row printonly">
+        <div class="col-md-12">
+            <div>
+                <h5>PROS</h5>
+                <%= selectedStrategy.pros %>
+            </div>
+            <div>
+                <h5>CONS</h5>
+                <%= selectedStrategy.cons %>
+            </div>
+        </div>
+    </div>
+    <div class="row spacer printonly">
+        <div class="col-md-12">
+        <h3>Your Defense</h3>
+        <div class="quiz-question">
+            <div><p><%= selectedStrategy.question %></p></div>
+            <div><%= responses.question1 %></div>
+        </div>
+        <div class="quiz-question">
+            <div><p>All of these programs seem like good ideas, but I want to make sure we are looking long-term and the proposal we select can endure, especially if funding is scarce in the future. Please explain your selection in terms of sustainability.</p></div>
+            <div>
+                <%= responses.question2 %>
+            </div>
+        </div>
+        <div class="quiz-question">
+            <div><p>A program may look good on paper, but may not consider the specific needs of the community it serves. Our needs here in Springdale County are unique. How can you ensure that our patients will accept and be satisfied with your selection?</p></div>
+            <div>
+                <%= responses.question3 %>
+            </div>
+        </div>
+        <div class="quiz-question">
+            <div><p>Frankly, we do not need another program that promises to make a big difference in improving the health of our community but ends up not doing much of anything. Convince us how your selection will have a significant health impact.</p></div>
+            <div>
+                <%= responses.question4 %>
+            </div>
+        </div>
+        <div class="quiz-question">
+            <div><p>My primary concern is that we are getting good value from the proposal we end up going with. Please tell us why you think your selection is best in terms of cost-effectiveness.</p></div>
+            <div>
+                <%= responses.question5 %>
+            </div>
+        </div>
+        </div>
+    </div>
+
     <form>
     <div class="row spacer">
         <div class="col-md-12 custom-container">
+            <h3 class="printonly">Your reflections</h3>
             <p>Now you have had a chance to review the pro's and con's for all of the strategies. If you could go back and select a proposal again, would you have chosen a different one?</p>
 
             <div class="radio">
