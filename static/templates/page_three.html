@@ -1,4 +1,5 @@
-<div class="page-3 spacer">
+<div class="page-3">
+    <!-- Modal for Strategy space -->
     <div class="modal fade" id="strategy-modal" tabindex="-1" role="dialog" aria-labelledby="Strategy">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -8,27 +9,29 @@
          </div>
           <div class="modal-body"></div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-6">
-            <h4>3. Select Strategies</h4>
+    <div class="row info-header">
+        <div class="col-xs-6">
+            <h3>3. Select Your Strategy</h3>
         </div>
-        <div class="col-md-offset-3 col-md-3">
-            <a class="btn btn-default btn-help pull-right" href="#" data-target="#help-modal-3" data-toggle="modal" role="button">
-                <span class="glyphicon glyphicon-question-sign"></span> Help</a>
+        <div class="col-xs-6 info-nav">
+            <!-- Instructions button -->
+            <a class="btn btn-default btn-sm btn-help pull-right" href="#" data-target="#help-modal-3" data-toggle="modal" role="button">
+                <span class="glyphicon glyphicon-question-sign"></span> Instructions</a>
             </a>
 
-            <div class="modal fade" id="help-modal-3" tabindex="-1" role="dialog" aria-labelledby="Help">
+            <!-- Instructions modal -->
+            <div class="modal fade" id="help-modal-3" tabindex="-1" role="dialog" aria-labelledby="Instructions">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Help</h4>
+                    <h4 class="modal-title">Instructions</h4>
                   </div>
                   <div class="modal-body">
                     <h4>Select a Strategy</h4>
@@ -43,11 +46,13 @@
               </div>
             </div>
 
-            <a href="#" class="btn btn-default pull-right" data-toggle="modal" data-target="#map-view-modal-3">
+            <!-- Map Layer button -->
+            <a href="#" class="btn btn-default btn-sm pull-right" data-toggle="modal" data-target="#map-view-modal-3">
                 <span class="glyphicon glyphicon-picture"></span> Map View
             </a>
 
-            <div class="modal fade map-view-modal" id="map-view-modal-3" tabindex="-1" role="dialog" aria-labelledby="Help">
+            <!-- Map Layer modal -->
+            <div class="modal fade map-view-modal" id="map-view-modal-3" tabindex="-1" role="dialog" aria-labelledby="Map Layer">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -66,23 +71,22 @@
                                          style="display: none; z-index: <%=layer.z_index%>; opacity:0.<%=layer.transparency%>; -moz-opacity:0.<%=layer.transparency%>; filter:alpha(opacity=<%=layer.transparency%>);"></img>
                                 <% } %>
                             </div>
-                            <div class="row spacer">
-                                <div class="col-md-12 text-center">
-                                    <div class="map-legend-container">
-                                        <div>
-                                            <h4>Map Legends</h4>
-                                            <div id="base_map_layer"><%= layers[0].legend %></div>
-                                        </div>
-                                        <% for (var i=1; i < layers.length; i++) { %>
-                                            <% var layer = layers[i]; %>
-                                            <div data-id="<%=layer.id%>"
-                                                 class="pull-left map_legend_<%=layer.id%> map_legend"
-                                                 style="display: none">
-                                                <h5><%=layer.display_name%></h5>
-                                                <%=layer.legend %>
-                                            </div>
-                                        <% } %>
+    
+                            <div class="map-legend-container clearfix row-nopadding">
+                                <div class="map-legend-container">
+                                    <div>
+                                        <h4>Map Legends</h4>
+                                        <div id="base_map_layer"><%= layers[0].legend %></div>
                                     </div>
+                                    <% for (var i=1; i < layers.length; i++) { %>
+                                        <% var layer = layers[i]; %>
+                                        <div data-id="<%=layer.id%>"
+                                             class="pull-left map_legend_<%=layer.id%> map_legend choices"
+                                             style="display: none">
+                                            <h5><%=layer.display_name%></h5>
+                                            <%=layer.legend %>
+                                        </div>
+                                    <% } %>
                                 </div>
                             </div>
                         </div>
@@ -95,24 +99,19 @@
         </div>
     </div>
 
-    <div class="row spacer">
-        <div class="col-md-6">
+    <div class="row row-nopadding">
+        <div class="col-xs-7 alert-container">
             <% if (selectedStrategy) { %>
-                <div class="alert alert-success">
-                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    You've selected Strategy #<%= selectedStrategy.ordinal %>. Click Step 3 to continue.
-                    <p style="font-size: 14px; margin-top: 10px !important;">
-                    After you answer a few additional questions, you will have an opportunity to reflect on your choice and 
-                    select a different strategy.<br /></p>
+                <div class="success_instructions well left alert-success">
+                    <b>You've selected Strategy #<%= selectedStrategy.ordinal %></b>.<br />Click <b>Step 4</b> to continue. In the next step, you'll be asked a few questions related to how and why you made your selection. Later, You'll have the opportunity to view pros and cons for each strategy and reflect on your selection.
                 </div>
             <% } else { %>
-                <div class="alert alert-info">
-                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                <div class="basic_instructions well left alert-info">
                     Select the proposal that you believe will be most successful for improving oral health and access to dental care for poor/low-income rural adults (18-65y/o) in Springdale County.
                 </div>
             <% } %>
         </div>
-        <div class="col-md-6 text-right">
+        <div class="col-xs-5 strategy-state-container">
             <div>
                 <% for (var i = strategies.length - 1; i >= 0; i--) { %>
                     <% var strategy = strategies[i] %>
@@ -125,27 +124,25 @@
         </div>
     </div>
 
-    <div class="row spacer">
-        <div class="col-md-12">
-            <div class="custom-container">
-                <% for (var i=0; i < strategies.length; i++) { %>
-                    <% var strategy = strategies[i]; %>
-                    <div class="quiz-question">
-                        <input type="radio" name="strategy" value="<%= strategies[i].id %>"
-                           <% if (selectedStrategy) { %>disabled="disabled"<% } %>
-                           <% if (strategy.selected) { %> checked="checked" class="yours" <% } %>
-                        />
-                        <%= strategy.ordinal %>. <%= strategy.title %> 
-                    </div>
-                <% } %>
+    <div class="custom-container">
+        <% for (var i=0; i < strategies.length; i++) { %>
+            <% var strategy = strategies[i]; %>
+            <div class="quiz-question clearfix<% if (strategy.selected) { %>  strategy-selected<% } %>">
+                <label>
+                <input type="radio" name="strategy" value="<%= strategies[i].id %>"
+                   <% if (selectedStrategy) { %>disabled="disabled"<% } %>
+                   <% if (strategy.selected) { %> checked="checked" class="yours" <% } %>
+                />
+                <%= strategy.ordinal %>. <%= strategy.title %> 
+                </label>
             </div>
-        </div>
+        <% } %>
     </div>
-    <div class="row spacer">
-        <div class="col-md-12 text-center">
-            <% if (!selectedStrategy) { %>
-                <button id="select-strategy" class="btn btn-primary">Submit</button>
-            <% } %>
-        </div>
+    <br />
+    <div class="text-center">
+        <% if (!selectedStrategy) { %>
+            <button id="select-strategy" class="btn btn-primary">Submit</button>
+        <% } %>
     </div>
+
 </div>
