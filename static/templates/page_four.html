@@ -1,4 +1,5 @@
-<div class="page-4 spacer">
+<div class="page-4">
+    <!-- Modal for Strategy space -->
     <div class="modal fade" id="strategy-modal" tabindex="-1" role="dialog" aria-labelledby="Strategy">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -8,27 +9,29 @@
          </div>
           <div class="modal-body"></div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-6">
-            <h4>4. Defend Strategy</h4>
+    <div class="row info-header">
+        <div class="col-xs-6">
+            <h3>4. Defend Strategy</h3>
         </div>
-        <div class="col-md-offset-3 col-md-3">
-            <a class="btn btn-default btn-help pull-right" href="#" data-target="#help-modal-4" data-toggle="modal" role="button">
-                <span class="glyphicon glyphicon-question-sign"></span> Help</a>
+        <div class="col-xs-6 info-nav">
+            <!-- Instructions button -->
+            <a class="btn btn-default btn-sm btn-help pull-right" href="#" data-target="#help-modal-4" data-toggle="modal" role="button">
+                <span class="glyphicon glyphicon-question-sign"></span> Instructions</a>
             </a>
 
-            <div class="modal fade" id="help-modal-4" tabindex="-1" role="dialog" aria-labelledby="Help">
+            <!-- Instructions modal -->
+            <div class="modal fade" id="help-modal-4" tabindex="-1" role="dialog" aria-labelledby="Instructions">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Help</h4>
+                    <h4 class="modal-title">Instructions</h4>
                   </div>
                   <div class="modal-body">
                     <h4>Defend Strategy</h4>
@@ -43,11 +46,13 @@
               </div>
             </div>
 
-            <a href="#" class="btn btn-default pull-right" data-toggle="modal" data-target="#map-view-modal-4">
+            <!-- Map Layer button -->
+            <a href="#" class="btn btn-default btn-sm pull-right" data-toggle="modal" data-target="#map-view-modal-4">
                 <span class="glyphicon glyphicon-picture"></span> Map View
             </a>
 
-            <div class="modal fade map-view-modal" id="map-view-modal-4" tabindex="-1" role="dialog" aria-labelledby="Help">
+            <!-- Map Layer modal -->
+            <div class="modal fade map-view-modal" id="map-view-modal-4" tabindex="-1" role="dialog" aria-labelledby="Map Layer">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -66,23 +71,22 @@
                                          style="display: none; z-index: <%=layer.z_index%>; opacity:0.<%=layer.transparency%>; -moz-opacity:0.<%=layer.transparency%>; filter:alpha(opacity=<%=layer.transparency%>);"></img>
                                 <% } %>
                             </div>
-                            <div class="row spacer">
-                                <div class="col-md-12 text-center">
-                                    <div class="map-legend-container">
-                                        <div>
-                                            <h4>Map Legends</h4>
-                                            <div id="base_map_layer"><%= layers[0].legend %></div>
-                                        </div>
-                                        <% for (var i=1; i < layers.length; i++) { %>
-                                            <% var layer = layers[i]; %>
-                                            <div data-id="<%=layer.id%>"
-                                                 class="pull-left map_legend_<%=layer.id%> map_legend"
-                                                 style="display: none">
-                                                <h5><%=layer.display_name%></h5>
-                                                <%=layer.legend %>
-                                            </div>
-                                        <% } %>
+
+                            <div class="map-legend-container clearfix row-nopadding">
+                                <div class="map-legend-container">
+                                    <div>
+                                        <h4>Map Legends</h4>
+                                        <div id="base_map_layer"><%= layers[0].legend %></div>
                                     </div>
+                                    <% for (var i=1; i < layers.length; i++) { %>
+                                        <% var layer = layers[i]; %>
+                                        <div data-id="<%=layer.id%>"
+                                             class="pull-left map_legend_<%=layer.id%> map_legend choices"
+                                             style="display: none">
+                                            <h5><%=layer.display_name%></h5>
+                                            <%=layer.legend %>
+                                        </div>
+                                    <% } %>
                                 </div>
                             </div>
                         </div>
@@ -95,21 +99,19 @@
         </div>
     </div>
 
-    <div class="row spacer">
-        <div class="col-md-6">
+    <div class="row row-nopadding">
+        <div class="col-xs-7 alert-container">
             <% if (complete) { %>
-                <div class="alert alert-success">
-                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    Great work. Click Step 5 to learn more about each strategy.
+                <div class="success_instructions well left alert-success">
+                    <b>You've defended your strategy</b>. Click <b>Step 5</b> to learn more about the pros and cons of each strategy, and Springdale County.
                 </div>
             <% } else { %>
-                <div class="alert alert-info">
-                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                <div class="basic_instructions well left alert-info">
                     Defend your selected proposal before NOSDA leadership by answering all of the questions on this page related to how and why you made your selection.
                 </div>
             <% } %>
         </div>
-        <div class="col-md-6 text-right">
+        <div class="col-xs-5 strategy-state-container">
             <div>
                 <% for (var i = strategies.length - 1; i >= 0; i--) { %>
                     <% var strategy = strategies[i] %>
@@ -122,60 +124,57 @@
         </div>
     </div>
 
-    <div class="row spacer">
-        <div class="col-md-12">
-            <div class="custom-container">
-                <form>
-                <p>You've selected #<%= selectedStrategy.ordinal %> <b><%= selectedStrategy.title %></b>. Please answer the following questions.</p>
-                <div class="quiz-question">
-                    <div><p><%= selectedStrategy.question %></p></div>
-                    <div>
-                        <input name="question1" class="form-control" type="text" <% if (complete) { %> disabled="disabled" <% } %>
-                            value="<%= responses.question1 %>"
-                        />
-                    </div>
-                </div>
-                <div class="quiz-question">
-                    <div><p>All of these programs seem like good ideas, but I want to make sure we are looking long-term and the proposal we select can endure, especially if funding is scarce in the future. Please explain your selection in terms of sustainability.</p></div>
-                    <div>
-                        <input name="question2" class="form-control" type="text" <% if (complete) { %> disabled="disabled" <% } %>
-                            value="<%= responses.question2 %>"
-                        />
-                    </div>
-                </div>
-                <div class="quiz-question">
-                    <div><p>A program may look good on paper, but may not consider the specific needs of the community it serves. Our needs here in Springdale County are unique. How can you ensure that our patients will accept and be satisfied with your selection?</p></div>
-                    <div>
-                        <input name="question3" class="form-control" type="text" <% if (complete) { %> disabled="disabled" <% } %>
-                            value="<%= responses.question3 %>"
-                        />
-                    </div>
-                </div>
-                <div class="quiz-question">
-                    <div><p>Frankly, we do not need another program that promises to make a big difference in improving the health of our community but ends up not doing much of anything. Convince us how your selection will have a significant health impact.</p></div>
-                    <div>
-                        <input name="question4" class="form-control" type="text" <% if (complete) { %> disabled="disabled" <% } %>
-                            value="<%= responses.question4 %>"
-                        />
-                    </div>
-                </div>
-                <div class="quiz-question">
-                    <div><p>My primary concern is that we are getting good value from the proposal we end up going with. Please tell us why you think your selection is best in terms of cost-effectiveness.</p></div>
-                    <div>
-                        <input name="question5" class="form-control" type="text" <% if (complete) { %> disabled="disabled" <% } %>
-                            value="<%= responses.question5 %>"
-                        />
-                    </div>
-                </div>
-                </form>
+    <div class="custom-container">
+        <form>
+        <p>You've selected <b>#<%= selectedStrategy.ordinal %> <%= selectedStrategy.title %></b>. Please answer the following questions.</p>
+        <div class="quiz-question">
+            <div><p><%= selectedStrategy.question %></p></div>
+            <div>
+                <input name="question1" class="form-control" type="text" <% if (complete) { %> disabled="disabled" <% } %>
+                    value="<%= responses.question1 %>"
+                />
             </div>
         </div>
-    </div>
-    <div class="row spacer">
-        <div class="col-md-12 text-center">
-            <% if (!complete) { %>
-                <button id="defend-strategy" class="btn btn-primary">Submit</button>
-            <% } %>
+        <div class="quiz-question">
+            <div><p>All of these programs seem like good ideas, but I want to make sure we are looking long-term and the proposal we select can endure, especially if funding is scarce in the future. Please explain your selection in terms of sustainability.</p></div>
+            <div>
+                <input name="question2" class="form-control" type="text" <% if (complete) { %> disabled="disabled" <% } %>
+                    value="<%= responses.question2 %>"
+                />
+            </div>
         </div>
+        <div class="quiz-question">
+            <div><p>A program may look good on paper, but may not consider the specific needs of the community it serves. Our needs here in Springdale County are unique. How can you ensure that our patients will accept and be satisfied with your selection?</p></div>
+            <div>
+                <input name="question3" class="form-control" type="text" <% if (complete) { %> disabled="disabled" <% } %>
+                    value="<%= responses.question3 %>"
+                />
+            </div>
+        </div>
+        <div class="quiz-question">
+            <div><p>Frankly, we do not need another program that promises to make a big difference in improving the health of our community but ends up not doing much of anything. Convince us how your selection will have a significant health impact.</p></div>
+            <div>
+                <input name="question4" class="form-control" type="text" <% if (complete) { %> disabled="disabled" <% } %>
+                    value="<%= responses.question4 %>"
+                />
+            </div>
+        </div>
+        <div class="quiz-question">
+            <div><p>My primary concern is that we are getting good value from the proposal we end up going with. Please tell us why you think your selection is best in terms of cost-effectiveness.</p></div>
+            <div>
+                <input name="question5" class="form-control" type="text" <% if (complete) { %> disabled="disabled" <% } %>
+                    value="<%= responses.question5 %>"
+                />
+            </div>
+        </div>
+        </form>
     </div>
+
+    <br />
+    <div class="text-center">
+        <% if (!complete) { %>
+            <button id="defend-strategy" class="btn btn-primary">Submit</button>
+        <% } %>
+    </div>
+
 </div>

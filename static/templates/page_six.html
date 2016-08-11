@@ -1,4 +1,5 @@
-<div class="page-6 spacer">
+<div class="page-6">
+    <!-- Modal for Strategy space -->
     <div class="modal fade" id="strategy-modal" tabindex="-1" role="dialog" aria-labelledby="Strategy">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -8,27 +9,29 @@
          </div>
           <div class="modal-body"></div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="row viewonly">
-        <div class="col-md-6">
-            <h4>6. Rethink Strategy Selection</h4>
+    <div class="row info-header hidden-print">
+        <div class="col-xs-6">
+            <h3>6. Rethink Strategy Selection</h3>
         </div>
-        <div class="col-md-offset-3 col-md-3">
-            <a class="btn btn-default btn-help pull-right" href="#" data-target="#help-modal-6" data-toggle="modal" role="button">
-                <span class="glyphicon glyphicon-question-sign"></span> Help</a>
+        <div class="col-xs-6 info-nav">
+            <!-- Instructions button -->
+            <a class="btn btn-default btn-sm btn-help pull-right" href="#" data-target="#help-modal-6" data-toggle="modal" role="button">
+                <span class="glyphicon glyphicon-question-sign"></span> Instructions
             </a>
 
-            <div class="modal fade" id="help-modal-6" tabindex="-1" role="dialog" aria-labelledby="Help">
+            <!-- Instructions modal -->
+            <div class="modal fade" id="help-modal-6" tabindex="-1" role="dialog" aria-labelledby="Instructions">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Help</h4>
+                    <h4 class="modal-title">Instructions</h4>
                   </div>
                   <div class="modal-body">
                     <h4>Rethink Strategy Selection</h4>
@@ -42,11 +45,13 @@
               </div>
             </div>
 
-            <a href="#" class="btn btn-default pull-right" data-toggle="modal" data-target="#map-view-modal-6">
+            <!-- Map Layer button -->
+            <a href="#" class="btn btn-default btn-sm pull-right" data-toggle="modal" data-target="#map-view-modal-6">
                 <span class="glyphicon glyphicon-picture"></span> Map View
             </a>
 
-            <div class="modal fade map-view-modal" id="map-view-modal-6" tabindex="-1" role="dialog" aria-labelledby="Help">
+            <!-- Map Layer modal -->
+            <div class="modal fade map-view-modal" id="map-view-modal-6" tabindex="-1" role="dialog" aria-labelledby="Map Layer">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -65,8 +70,8 @@
                                          style="display: none; z-index: <%=layer.z_index%>; opacity:0.<%=layer.transparency%>; -moz-opacity:0.<%=layer.transparency%>; filter:alpha(opacity=<%=layer.transparency%>);"></img>
                                 <% } %>
                             </div>
-                            <div class="row spacer">
-                                <div class="col-md-12 text-center">
+                            <div class="row">
+                                <div class="col-xs-12 text-center">
                                     <div class="map-legend-container">
                                         <div>
                                             <h4>Map Legends</h4>
@@ -94,21 +99,19 @@
         </div>
     </div>
 
-    <div class="row spacer viewonly">
-        <div class="col-md-6">
+    <div class="row row-nopadding hidden-print">
+        <div class="col-xs-7 alert-container">
             <% if (complete) { %>
-                <div class="alert alert-success">
-                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    Complete! Use the print button to print out or save your reflections.</p>
+                <div class="success_instructions well left alert-success">
+                    You've completed this activity. Click the print button [&nbsp;<span class="glyphicon glyphicon-print"></span>&nbsp;] to print out or save your reflections.
                 </div>
             <% } else { %>
-                <div class="alert alert-info">
-                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                <div class="basic_instructions well left alert-info">
                     Now that you have read the pros and cons for each strategy, would you have chosen differently? Answer the question yes or no, then decide which strategy you would select a second time.
                 </div>
             <% } %>
         </div>
-        <div class="col-md-6 text-right">
+        <div class="col-xs-5 strategy-state-container">
             <div>
                 <% for (var i = strategies.length - 1; i >= 0; i--) { %>
                     <% var strategy = strategies[i] %>
@@ -121,162 +124,152 @@
         </div>
     </div>
 
-    <div class="row spacer printonly">
-        <div class="col-md-12">
-            <h3>Your Strategy</h3>
-            <div class="strategy-title">#<%= selectedStrategy.ordinal %>. <%= selectedStrategy.title %></div>
+    <div class="visible-print-block">
+        <h3>Your Choice</h3>
+        <div class="strategy-title"><b>Strategy <%= selectedStrategy.ordinal %>: <%= selectedStrategy.title %></b></div>
+
+        <div>
+            <h5>PROS</h5>
+            <%= selectedStrategy.pros %>
         </div>
-    </div>
-    <div class="row printonly">
-        <div class="col-md-12">
-            <div>
-                <h5>PROS</h5>
-                <%= selectedStrategy.pros %>
-            </div>
-            <div>
-                <h5>CONS</h5>
-                <%= selectedStrategy.cons %>
-            </div>
+        <div>
+            <h5>CONS</h5>
+            <%= selectedStrategy.cons %>
         </div>
-    </div>
-    <div class="row spacer printonly">
-        <div class="col-md-12">
+
+       <div>
+            <h5>SUMMARY</h5>
+            <%= selectedStrategy.summary %>
+        </div>
+
         <h3>Your Defense</h3>
         <div class="quiz-question">
             <div><p><%= selectedStrategy.question %></p></div>
-            <div><%= responses.question1 %></div>
+            <div><b>Your response:</b> <%= responses.question1 %></div>
         </div>
         <div class="quiz-question">
             <div><p>All of these programs seem like good ideas, but I want to make sure we are looking long-term and the proposal we select can endure, especially if funding is scarce in the future. Please explain your selection in terms of sustainability.</p></div>
             <div>
-                <%= responses.question2 %>
+                <b>Your response:</b> <%= responses.question2 %>
             </div>
         </div>
         <div class="quiz-question">
             <div><p>A program may look good on paper, but may not consider the specific needs of the community it serves. Our needs here in Springdale County are unique. How can you ensure that our patients will accept and be satisfied with your selection?</p></div>
             <div>
-                <%= responses.question3 %>
+                 <b>Your response:</b> <%= responses.question3 %>
             </div>
         </div>
         <div class="quiz-question">
             <div><p>Frankly, we do not need another program that promises to make a big difference in improving the health of our community but ends up not doing much of anything. Convince us how your selection will have a significant health impact.</p></div>
             <div>
-                <%= responses.question4 %>
+                <b>Your response:</b> <%= responses.question4 %>
             </div>
         </div>
         <div class="quiz-question">
             <div><p>My primary concern is that we are getting good value from the proposal we end up going with. Please tell us why you think your selection is best in terms of cost-effectiveness.</p></div>
             <div>
-                <%= responses.question5 %>
+                <b>Your response:</b> <%= responses.question5 %>
             </div>
-        </div>
         </div>
     </div>
 
     <form>
-    <div class="row spacer">
-        <div class="col-md-12 custom-container">
-            <h3 class="printonly">Your reflections</h3>
-            <p>Now you have had a chance to review the pro's and con's for all of the strategies. If you could go back and select a proposal again, would you have chosen a different one?</p>
+    <div class="custom-container">
+        <h3 class="visible-print-block">Your Reflections</h3>
+        <p>Now you have had a chance to review the pro's and con's for all of the strategies. If you could go back and select a proposal again, would you have chosen a different one?</p>
 
-            <div class="radio">
-              <label>
-                <input type="radio" name="sameStrategy" value="1"
-                    <% if (complete) { %>disabled="disabled"<% } %>
-                    <% if (responses.sameStrategy === '1') { %>checked="checked"<% } %> /> 
-                Yes
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="sameStrategy" value="0"
-                    <% if (complete) { %>disabled="disabled"<% } %>
-                    <% if (responses.sameStrategy === '0') { %>checked="checked"<% } %> /> 
-                No
-              </label>
-            </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="sameStrategy" value="1"
+                <% if (complete) { %>disabled="disabled"<% } %>
+                <% if (responses.sameStrategy === '1') { %>checked="checked"<% } %> /> 
+            Yes
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="sameStrategy" value="0"
+                <% if (complete) { %>disabled="disabled"<% } %>
+                <% if (responses.sameStrategy === '0') { %>checked="checked"<% } %> /> 
+            No
+          </label>
         </div>
     </div>
 
-    <div class="row spacer">
-        <div class="col-md-12 custom-container">
-            <p>Which strategy would you select?</p>
+    <div class="custom-container">
+        <p>Which strategy would you select?</p>
 
-            <div class="radio">
-              <label>
-                <input type="radio" name="changeStrategy" value="1"
-                    <% if (complete) { %>disabled="disabled"<% } %>
-                    <% if (responses.changeStrategy === '1') { %>checked="checked"<% } %> /> 
-                Strategy 1
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="changeStrategy" value="2"
-                    <% if (complete) { %>disabled="disabled"<% } %>
-                    <% if (responses.changeStrategy === '2') { %>checked="checked"<% } %> /> 
-                Strategy 2
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="changeStrategy" value="3"
-                    <% if (complete) { %>disabled="disabled"<% } %>
-                    <% if (responses.changeStrategy === '3') { %>checked="checked"<% } %> /> 
-                Strategy 3
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="changeStrategy" value="4"
-                    <% if (complete) { %>disabled="disabled"<% } %>
-                    <% if (responses.changeStrategy === '4') { %>checked="checked"<% } %> /> 
-                Strategy 4
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="changeStrategy" value="5"
-                    <% if (complete) { %>disabled="disabled"<% } %>
-                    <% if (responses.changeStrategy === '5') { %>checked="checked"<% } %> /> 
-                Strategy 5
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="changeStrategy" value="6"
-                    <% if (complete) { %>disabled="disabled"<% } %>
-                    <% if (responses.changeStrategy === '6') { %>checked="checked"<% } %> /> 
-                Strategy 6
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="changeStrategy" value="7"
-                    <% if (complete) { %>disabled="disabled"<% } %>
-                    <% if (responses.changeStrategy === '7') { %>checked="checked"<% } %> /> 
-                I would not change my mind
-              </label>
-            </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="changeStrategy" value="1"
+                <% if (complete) { %>disabled="disabled"<% } %>
+                <% if (responses.changeStrategy === '1') { %>checked="checked"<% } %> /> 
+            Strategy 1
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="changeStrategy" value="2"
+                <% if (complete) { %>disabled="disabled"<% } %>
+                <% if (responses.changeStrategy === '2') { %>checked="checked"<% } %> /> 
+            Strategy 2
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="changeStrategy" value="3"
+                <% if (complete) { %>disabled="disabled"<% } %>
+                <% if (responses.changeStrategy === '3') { %>checked="checked"<% } %> /> 
+            Strategy 3
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="changeStrategy" value="4"
+                <% if (complete) { %>disabled="disabled"<% } %>
+                <% if (responses.changeStrategy === '4') { %>checked="checked"<% } %> /> 
+            Strategy 4
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="changeStrategy" value="5"
+                <% if (complete) { %>disabled="disabled"<% } %>
+                <% if (responses.changeStrategy === '5') { %>checked="checked"<% } %> /> 
+            Strategy 5
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="changeStrategy" value="6"
+                <% if (complete) { %>disabled="disabled"<% } %>
+                <% if (responses.changeStrategy === '6') { %>checked="checked"<% } %> /> 
+            Strategy 6
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="changeStrategy" value="7"
+                <% if (complete) { %>disabled="disabled"<% } %>
+                <% if (responses.changeStrategy === '7') { %>checked="checked"<% } %> /> 
+            I would not change my mind
+          </label>
         </div>
     </div>
 
-    <div class="row spacer">
-        <div class="col-md-12 custom-container">
-            <p>Why?</p>
-            <div class="form-group">
-                <textarea <% if (complete) { %>disabled="disabled"<% } %> 
-                    name="why" class="form-control" rows="3"><%= responses.why %></textarea>
-            </div>
+    <div class="custom-container">
+        <p>Explain why. Keep in mind impact, cost-effectiveness, and sustainability of the program proposed.</p>
+        <div class="form-group">
+            <textarea <% if (complete) { %>disabled="disabled"<% } %> 
+                name="why" class="form-control" rows="3"><%= responses.why %></textarea>
         </div>
+    </div>
+    <br />
+    <div class="text-center">
+        <% if (!complete) { %>
+            <button id="rethink-strategy" class="btn btn-primary">Submit</button>
+        <% } %>
     </div>
 
-    <div class="row spacer">
-        <div class="col-md-12 text-center">
-            <% if (!complete) { %>
-                <button id="rethink-strategy" class="btn btn-primary">Submit</button>
-            <% } %>
-        </div>
-    </div>
-    </form>
+   </form>
 </div>

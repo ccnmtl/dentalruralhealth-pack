@@ -1,4 +1,5 @@
-<div class="page-5 spacer">
+<div class="page-5">
+    <!-- Modal for Strategy space -->
     <div class="modal fade" id="strategy-modal" tabindex="-1" role="dialog" aria-labelledby="Strategy">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -8,27 +9,29 @@
          </div>
           <div class="modal-body"></div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-6">
-            <h4>5. Review Pros &amp; Cons</h4>
+    <div class="row info-header">
+        <div class="col-xs-6">
+            <h3>5. Review Pros &amp; Cons</h3>
         </div>
-        <div class="col-md-offset-3 col-md-3">
-            <a class="btn btn-default btn-help pull-right" href="#" data-target="#help-modal-5" data-toggle="modal" role="button">
-                <span class="glyphicon glyphicon-question-sign"></span> Help</a>
+        <div class="col-xs-6 info-nav">
+            <!-- Instructions button -->
+            <a class="btn btn-default btn-sm btn-help pull-right" href="#" data-target="#help-modal-5" data-toggle="modal" role="button">
+                <span class="glyphicon glyphicon-question-sign"></span> Instructions</a>
             </a>
 
-            <div class="modal fade" id="help-modal-5" tabindex="-1" role="dialog" aria-labelledby="Help">
+            <!-- Instructions modal -->
+            <div class="modal fade" id="help-modal-5" tabindex="-1" role="dialog" aria-labelledby="Instructions">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Help</h4>
+                    <h4 class="modal-title">Instructions</h4>
                   </div>
                   <div class="modal-body">
                     <h4>Review Pros &amp; Cons</h4>
@@ -42,11 +45,13 @@
               </div>
             </div>
 
-            <a href="#" class="btn btn-default pull-right" data-toggle="modal" data-target="#map-view-modal-5">
+            <!-- Map Layer button -->
+            <a href="#" class="btn btn-default btn-sm pull-right" data-toggle="modal" data-target="#map-view-modal-5">
                 <span class="glyphicon glyphicon-picture"></span> Map View
             </a>
 
-            <div class="modal fade map-view-modal" id="map-view-modal-5" tabindex="-1" role="dialog" aria-labelledby="Help">
+            <!-- Map Layer modal -->
+            <div class="modal fade map-view-modal" id="map-view-modal-5" tabindex="-1" role="dialog" aria-labelledby="Map Layer">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -65,23 +70,22 @@
                                          style="display: none; z-index: <%=layer.z_index%>; opacity:0.<%=layer.transparency%>; -moz-opacity:0.<%=layer.transparency%>; filter:alpha(opacity=<%=layer.transparency%>);"></img>
                                 <% } %>
                             </div>
-                            <div class="row spacer">
-                                <div class="col-md-12 text-center">
-                                    <div class="map-legend-container">
-                                        <div>
-                                            <h4>Map Legends</h4>
-                                            <div id="base_map_layer"><%= layers[0].legend %></div>
-                                        </div>
-                                        <% for (var i=1; i < layers.length; i++) { %>
-                                            <% var layer = layers[i]; %>
-                                            <div data-id="<%=layer.id%>"
-                                                 class="pull-left map_legend_<%=layer.id%> map_legend"
-                                                 style="display: none">
-                                                <h5><%=layer.display_name%></h5>
-                                                <%=layer.legend %>
-                                            </div>
-                                        <% } %>
+
+                            <div class="map-legend-container clearfix row-nopadding">
+                                <div class="map-legend-container">
+                                    <div>
+                                        <h4>Map Legends</h4>
+                                        <div id="base_map_layer"><%= layers[0].legend %></div>
                                     </div>
+                                    <% for (var i=1; i < layers.length; i++) { %>
+                                        <% var layer = layers[i]; %>
+                                        <div data-id="<%=layer.id%>"
+                                             class="pull-left map_legend_<%=layer.id%> map_legend choices"
+                                             style="display: none">
+                                            <h5><%=layer.display_name%></h5>
+                                            <%=layer.legend %>
+                                        </div>
+                                    <% } %>
                                 </div>
                             </div>
                         </div>
@@ -94,14 +98,15 @@
         </div>
     </div>
 
-    <div class="row spacer">
-        <div class="col-md-6">
-            <div class="alert alert-success">
-                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                Review the pros and cons for the strategy you selected. Click the green notepads to review pros and cons for the other strategies. Then click Step 6 to reflect on your choice.
+    <div class="row row-nopadding">
+        <div class="col-xs-7 alert-container">
+            <div class="basic_instructions well left alert-info">
+                1. Review the pros and cons for the strategy you selected. The summary information is included below.<br />
+                2. Click the green notepads to review pros and cons for the other strategies.<br />
+                3. Next, click <b>Step 6</b> to reflect on your choice.
             </div>
         </div>
-        <div class="col-md-6 text-right">
+        <div class="col-xs-5 strategy-state-container">
             <div>
                 <% for (var i = strategies.length - 1; i >= 0; i--) { %>
                     <% var strategy = strategies[i] %>
@@ -114,35 +119,31 @@
         </div>
     </div>
 
-    <div class="row spacer">
-        <div class="col-md-1">
-            <div class="strategy-state viewed selected">
-                <%= selectedStrategy.ordinal %>
+    <div class="custom-container">
+        <div class="row">
+            <div class="col-xs-1">
+                <div class="strategy-state viewed selected">
+                    <%= selectedStrategy.ordinal %>
+                </div>
+            </div>
+            <div class="col-xs-11">
+                <div class="strategy-title"><%= selectedStrategy.title %></div>
             </div>
         </div>
-        <div class="col-md-11">
-            <div class="strategy-title"><%= selectedStrategy.title %></div>
+        <div class="strategy-download pull-right">
+            <a href="./<%=selectedStrategy.pdf%>" target="_blank" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-download-alt"></span> Download full proposal</a>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 custom-container">
-            <div>
-                <div>
+        <div>
                     <h5>PROS</h5>
                     <%= selectedStrategy.pros %>
                 </div>
-                <div>
+        <div>
                     <h5>CONS</h5>
                     <%= selectedStrategy.cons %>
                 </div>
-            </div>
-            <div class="strategy-container">
+        <div class="strategy-container">
                 <h5>SUMMARY</h5>
                 <%= selectedStrategy.summary %>
             </div>
-            <div class="strategy-download pull-right">
-                <a href="./<%=selectedStrategy.pdf%>">Download full proposal</a>
-            </div>
-        </div>
     </div>
 </div>

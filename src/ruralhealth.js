@@ -435,7 +435,7 @@ var RuralHealthOfficeApp = {
             views: views
         });
 
-        jQuery('body').show();
+        jQuery('.interactive-container').show();
     }
 };
 
