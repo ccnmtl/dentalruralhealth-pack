@@ -121,8 +121,9 @@ var StrategyView = BaseView.extend({
         'hidden.bs.modal #strategy-modal': 'onHideStrategy',
     },
     initialize: function(options) {
-        _.bindAll(this, 'render', 'renderMap', 'onSelectLayer',
-                'onShowStrategy', 'onHideStrategy', 'maybeComplete');
+        _.bindAll(
+            this, 'render', 'renderMap', 'onSelectLayer',
+            'onShowStrategy', 'onHideStrategy', 'maybeComplete');
 
         this.complete = false;
         this.strategies = options.strategies;
@@ -172,8 +173,9 @@ var SelectStrategyView = BaseView.extend({
         'click .strategy-state': 'onShowStrategy'
     },
     initialize: function(options) {
-        _.bindAll(this, 'render', 'renderMap', 'onSelectStrategy',
-                'onShowStrategy', 'maybeComplete');
+        _.bindAll(
+            this, 'render', 'renderMap', 'onSelectStrategy',
+            'onShowStrategy', 'maybeComplete');
 
         this.selectedStrategy = null;
         this.strategies = options.strategies;
