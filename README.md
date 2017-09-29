@@ -1,6 +1,8 @@
 Rural Populations: Standalone Interactive Exercise 
 ==========
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ccnmtl/dentalruralhealth-pack.svg)](https://greenkeeper.io/)
+
 #### Background
 You are the Springdale County Chair to the North Oralington State Dental Association (NOSDA).
 
