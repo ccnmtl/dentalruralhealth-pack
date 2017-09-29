@@ -42,10 +42,17 @@
     "url": "https://github.com/ccnmtl/dentalruralhealth-pack/issues"
   },
   "license": "GPL-3.0",
+  "greenkeeper": {
+    "ignore": [
+      "file-loader"
+    ]
+  },
   "devDependencies": {
     "chai": "^4.0.2",
-    "jscs": "^3.0.7",
-    "jshint": "^2.9.4",
+    "eslint": "~4.7.0",
+    "eslint-config-scanjs": "^1.0.0-beta4",
+    "eslint-plugin-no-unsafe-innerhtml": "^1.0.16",
+    "eslint-plugin-security": "^1.4.0",
     "loglevel": "^1.4.1",
     "mocha": "^3.4.2",
     "mocha-phantomjs": "^4.1.0",
@@ -57,7 +64,7 @@
     "bootstrap": "^3.3.6",
     "bootstrap-arrow-buttons": "^1.0.4",
     "css-loader": "^0.28.4",
-    "file-loader": "^1.0.0",
+    "file-loader": "^0.11.2",
     "jquery": "^3.2.1",
     "json-loader": "^0.5.4",
     "style-loader": "^0.18.2",
