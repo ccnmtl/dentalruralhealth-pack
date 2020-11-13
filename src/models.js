@@ -1,14 +1,13 @@
 /* global module: true */
 
 var Backbone = require('backbone');
-var _ = require('underscore');
 
 var MapLayer = Backbone.Model.extend({
     defaults: {
         visible: false
     },
     toTemplate: function() {
-        return _(this.attributes).clone();
+        return {...this.attributes};
     }
 });
 
@@ -37,7 +36,7 @@ var Strategy = Backbone.Model.extend({
         selected: false
     },
     toTemplate: function() {
-        var json = _.clone(this.attributes);
+        var json = {...this.attributes};
         json.viewed = this.get('viewed');
         json.selected = this.get('selected');
         return json;
