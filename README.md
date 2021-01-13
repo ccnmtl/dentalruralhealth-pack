@@ -1,3 +1,6 @@
+[![Actions Status](https://github.com/ccnmtl/dentalruralhealth-pack/workflows/build-and-test/badge.svg)](https://github.com/ccnmtl/dentalruralhealth-pack/actions)
+
+
 Rural Populations: Standalone Interactive Exercise 
 ==========
 
