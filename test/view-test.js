@@ -1,4 +1,5 @@
-/* global describe: true, before: true */
+/* global describe: true, before: true, it: true */
+require('!file-loader?name=[name].[ext]!../test/view-test.html');
 
 require('../src/static.js');
 
@@ -16,5 +17,11 @@ describe('RuralHealthOfficeApp', function() {
         jQuery(elt).html('');
 
         module.RuralHealthOfficeApp.initialize();
+    });
+
+    describe('step1 interaction', function() {
+        it('initialized', function() {
+            assert.equal(jQuery('.btn-step').length, 6);
+        });
     });
 });
