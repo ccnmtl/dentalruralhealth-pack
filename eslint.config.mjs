@@ -1,4 +1,3 @@
-import security from "eslint-plugin-security";
 import noUnsafeInnerhtml from "eslint-plugin-no-unsafe-innerhtml";
 import globals from "globals";
 import path from "node:path";
@@ -16,10 +15,8 @@ const compat = new FlatCompat({
 
 export default [
     ...compat.extends("eslint:recommended"),
-    security.configs.recommended,
     {
         plugins: {
-            security,
             "no-unsafe-innerhtml": noUnsafeInnerhtml,
         },
 
@@ -53,7 +50,6 @@ export default [
             }],
 
             quotes: ["error", "single"],
-            "security/detect-object-injection": "off",
             semi: ["error", "always"],
         },
     },
