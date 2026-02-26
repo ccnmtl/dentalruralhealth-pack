@@ -48,7 +48,7 @@
   "devDependencies": {
     "chai": "^6.0.0",
     "css-loader": "^7.0.0",
-    "eslint": "~9.39.0",
+    "eslint": "~10.0.2",
     "eslint-plugin-no-unsafe-innerhtml": "^1.0.16",
     "file-loader": "^6.0.0",
     "globals": "^17.0.0",
